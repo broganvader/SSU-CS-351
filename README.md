@@ -1,3 +1,20 @@
-# SSU-CS-351
-* Project 1
-* bullet
+# Analysis and reporting!
+1. Which program is fastest? Is it always the fastest?
+* Malloc was the fastest, but alloca was always very close to the same speed, and sometimes they had the same speed.
+2. Which program is slowest? Is it always the slowest?
+* List was the slowwest, with sometimes new being just as slow.
+3. Was there a trend in program execution time based on the size of data in each Node? If so, what, and why?
+* Yes, though not a linear one. Seemed to be logarithmic.
+4. Was there a trend in program execution time based on the length of the block chain?
+* Yes, There seemed to be a linear trend between length and time
+5. Consider heap breaks, what's noticeable? Does increasing the stack size affect the heap? Speculate on any similarities and differences in programs?
+* Increasing the stack size should have no effect on the heap. Unless you reach the max size of the heap and aren't able to grow the stack for the things it needs, then the programs should be the same. Unless maybe there is some cache efficiency we're losing because the blobs of memory are further from each other.
+6. Considering either the malloc.cpp or alloca.cpp versions of the program, generate a diagram showing two Nodes. Include in the diagram  
+- the relationship of the head, tail, and Node next pointers.
+- show the size (in bytes) and structure of a Node that allocated six bytes of data
+- include the bytes pointer, and indicate using an arrow which byte in the allocated memory it points to.
+* in picture
+7. 
+* Most of them were the same, bu the allocating memory changed drastically
+8.
+* Yes, since we have to write to each byte.
