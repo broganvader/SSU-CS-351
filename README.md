@@ -13,7 +13,7 @@
 - the relationship of the head, tail, and Node next pointers.
 - show the size (in bytes) and structure of a Node that allocated six bytes of data
 - include the bytes pointer, and indicate using an arrow which byte in the allocated memory it points to.
-* in picture
+[Diagram](Diagram.png "Question 6 Diagram")
 7. There's an overhead to allocating memory, initializing it, and eventually processing (in our case, hashing it). For each program, were any of these tasks the same? Which one(s) were different?
 * Most of them were the same, bu the allocating memory changed drastically
 8. As the size of data in a Node increases, does the significance of allocating the node increase or decrease?
