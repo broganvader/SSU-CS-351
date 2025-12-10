@@ -14,7 +14,10 @@ The threaded program takes much less time to complete the calculation, but there
 
 
 ## Computing Volume
-![volume comp time graph](proj4/volume.png)
+
 
 The threaded program also takes less time to complete, but only after 4 threads. The 2 threaded operation takes more time. I'm assuming because the 2 threads are virtual, and live on the same core, so theres no real time gain just jumping around. However after that, there are consistant gains until 70 threads. The time converges to around 1 second +- -.1s.
+
+![volume comp time graph](proj4/volume.png)
+
 
