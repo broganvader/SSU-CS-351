@@ -94,9 +94,22 @@ int main(int argc, char* argv[]) {
     //
     for (size_t id = 0; id < threads.size(); ++id) {
         threads[id] = std::jthread(
-            []() {
-                // Add your implementation here
+            [&, id]() {  // capture refs to outer vars, and id by value
+            	// Compute this thread's range in the data
+            	size_t begin = id * chunkSize;
+            	size_t end   = std::min(begin + chunkSize, data.size());
 
+            	double localSum = 0.0;
+
+            	// Guard in case data.size() < begin (possible for last threads)
+            	if (begin < data.size()) {
+                	for (size_t i = begin; i < end; ++i) {
+                    	localSum += data[i];
+                	}
+            	}
+
+            	// Store this thread's partial sum
+            	sums[id] = localSum;
                 barrier.arrive_and_wait();
             }
         );

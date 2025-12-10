@@ -136,7 +136,7 @@ int main(int argc, char* argv[]) {
     //      closing brace :-)   
     //
     for (size_t id = 0; id < threads.size(); ++id) {
-        threads[id] = std::jthread{ []() {
+        threads[id] = std::jthread{ [&, id]() {
 
             // C++ 11's random number generation system.  These functions
             //   will generate uniformly distributed unsigned integers in
@@ -152,7 +152,20 @@ int main(int argc, char* argv[]) {
                 auto rand = [&,partitions]() {
                     return static_cast<double>(uniform(generator)) / partitions;
                 };
-            
+ 
+     		size_t tally = 0;
+		size_t begin = id * chunkSize;
+		size_t end = begin + chunkSize;
+		if (end > numSamples){
+				end = numSamples;
+				}
+
+		for (size_t i = begin; i < end; ++i){
+	                	vec3 p(rand(), rand(), rand());
+					tally += sdf(p);
+					}
+
+		insidePoints[id] = tally;		
                 // Generate points inside the volume cube.  First, create uniformly
                 //   distributed points in the range [0.0, 1.0] for each dimension.
                 vec3 p(rand(), rand(), rand());
@@ -167,6 +180,13 @@ int main(int argc, char* argv[]) {
     //   having the main thread wait on a thread to keep it from exiting
     //
     // (Look in threaded.cpp for hints)
+    for (int i = 0; i < threads.size(); i++){
+	    if (threads[i].joinable()) threads[i].join();
+    }
+    int volumePoints = 0;
+    for (int i = 0; i < insidePoints.size(); i++) volumePoints += insidePoints[i];
+	
+
 
     std::cout << static_cast<double>(volumePoints) / numSamples << "\n";
 }
