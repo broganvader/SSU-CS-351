@@ -108,8 +108,8 @@ Color setColor(int iterations) {
 
 template <typename T>
 struct TComplex {
-    T x = T(0.5);
-    T y = T(0.5);
+    T x = T(0);
+    T y = T(0);
 
     TComplex() = default;
 
