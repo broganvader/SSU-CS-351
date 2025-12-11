@@ -14,4 +14,4 @@ This
 
 
 
-![julia set](julia.ppm)
+![julia set](julia.png)
